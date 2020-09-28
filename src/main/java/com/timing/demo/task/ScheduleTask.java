@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 @EnableScheduling
 public class ScheduleTask {
-    @Scheduled(cron = "0 0 0/1 * * ? ")
+//    @Scheduled(cron = "0/25 0/1 0/1 * * ?")
     private void sys() {
         try {
             String response = HttpUtils.getRequest("http://localhost:8080");
