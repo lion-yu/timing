@@ -6,5 +6,83 @@
 </head>
 <body>
 
+<table id="waiting" border="1">
+    <caption>待升级</caption>
+    <tr>
+        <th>电站名</th>
+        <th>电站id</th>
+        <th>网关sn</th>
+        <th>设备别名</th>
+        <th>当前状态</th>
+        <th>连接</th>
+        <th>当前版本号</th>
+        <th>目标版本号</th>
+    </tr>
+    <tr>
+        <td>zenin</td>
+        <td>5afa973bb1f6a81ad4e738bd</td>
+        <td>1040411829263</td>
+        <td>Pad 3</td>
+        <td>online</td>
+        <td>connected</td>
+        <td>V01.6217</td>
+        <td>V01.6217</td>
+    </tr>
+</table>
+
+<table id="success" border="1">
+    <caption>已升级</caption>
+    <tr>
+        <th>电站名</th>
+        <th>电站id</th>
+        <th>网关sn</th>
+        <th>设备别名</th>
+        <th>当前状态</th>
+        <th>连接</th>
+        <th>当前版本号</th>
+        <th>目标版本号</th>
+    </tr>
+    <tr>
+        <td>zenin</td>
+        <td>5afa973bb1f6a81ad4e738bd</td>
+        <td>1040411829263</td>
+        <td>Pad 3</td>
+        <td>online</td>
+        <td>connected</td>
+        <td>V01.6217</td>
+        <td>V01.6217</td>
+    </tr>
+
+</table>
+<script src="./jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        const url = "http://localhost:8080/migration/gateways"
+        $.getJSON(url, function(data){
+            if(data.data.success) {
+                // 拼接页面
+                var waitingList = data.data.waiting;
+                var successList = data.data.success;
+                var waitingTable = "";
+                var successTable = "";
+                waitingList.map(function (item, index) {
+                    waitingTable += '<tr><td>' + item.sitePYName + '</td>' + '<td>' + item.plantId + '</td>' +
+                        '<td>' + item.sn + '</td>' + '<td>' + item.alias + '</td>' +
+                        '<td>' + item.status + '</td>' + '<td>' + item.connected + '</td>' +
+                        '<td>' + item.mobile + '</td>' + '<td>V01.6217</td>' + '</tr>>'
+                })
+                $("#waiting").html(waitingTable);
+                successList.map(function (item, index) {
+                    successTable += '<tr><td>' + item.sitePYName + '</td>' + '<td>' + item.plantId + '</td>' +
+                        '<td>' + item.sn + '</td>' + '<td>' + item.alias + '</td>' +
+                        '<td>' + item.status + '</td>' + '<td>' + item.connected + '</td>' +
+                        '<td>' + item.mobile + '</td>' + '<td>V01.6217</td>' + '</tr>>'
+                })
+                $("#success").html(waitingTable);
+            }
+        })
+    })
+</script>
+
 </body>
 </html>

@@ -13,9 +13,9 @@ import java.util.Map;
 public class Hello {
     @GetMapping
     public Map<String, String> hello() {
-        Map<String, String> result = new HashMap<>();
-        result.put("name", "张总");
-        result.put("age", "25");
-        return result;
+//        Map<String, String> result = new HashMap<>();
+//        result.put("name", "张总");
+//        result.put("age", "25");
+        return null;
     }
 }
